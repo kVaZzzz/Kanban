@@ -25,3 +25,25 @@ body {
     border-radius: 10px;
 }
 
+form label {
+    font-weight: bold;
+}
+
+form button {
+    height: 25px;
+    color: rgb(247, 225, 215);
+    background-color: rgb(74, 87, 89);
+    border: none;
+}
+
+.board {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.column {
+    background-color: bisque;
+    padding: 30px;
+    width: 250px;
+}
