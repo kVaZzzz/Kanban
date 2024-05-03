@@ -246,6 +246,15 @@ Vue.component('app', {
                 completedTask: this.completedTask
             }));
         },
+        loadTasks() {
+            const tasksData = JSON.parse(localStorage.getItem('tasks'));
+            if (tasksData) {
+                this.planTask = tasksData.planTask || [];
+                this.workTask = tasksData.workTask || [];
+                this.testingTask = tasksData.testingTask || [];
+                this.completedTask = tasksData.completedTask || [];
+            }
+        }
     }
 });
 
