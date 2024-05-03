@@ -228,7 +228,24 @@ Vue.component('app', {
             this.workTask.push(task);
             this.saveTasks();
         },
-
+        completeTask(task) {
+            this.testingTask.splice(this.testingTask.indexOf(task), 1);
+            this.completedTask.push(task);
+            if (task.deadline >= task.createdDate) {
+                task.check = 'Выполнено в срок';
+            } else {
+                task.check = 'Просрочено';
+            }
+            this.saveTasks();
+        },
+        saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify({
+                planTask: this.planTask,
+                workTask: this.workTask,
+                testingTask: this.testingTask,
+                completedTask: this.completedTask
+            }));
+        },
     }
 });
 
