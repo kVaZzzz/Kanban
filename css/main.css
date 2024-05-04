@@ -25,9 +25,6 @@ body {
     border-radius: 10px;
 }
 
-form label {
-    font-weight: bold;
-}
 
 form button {
     height: 25px;
