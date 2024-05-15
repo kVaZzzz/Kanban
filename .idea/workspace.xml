@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ad26ef8-18e7-413e-8fab-3d9102ca7fbf" name="Changes" comment="eqw">
+    <list default="true" id="1ad26ef8-18e7-413e-8fab-3d9102ca7fbf" name="Changes" comment="finally">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
@@ -45,7 +45,7 @@
       <updated>1714745987364</updated>
       <workItem from="1714745990331" duration="1442000" />
       <workItem from="1714747465444" duration="289000" />
-      <workItem from="1715783265766" duration="1063000" />
+      <workItem from="1715783265766" duration="1535000" />
     </task>
     <task id="LOCAL-00001" summary="продолжение начала">
       <option name="closed" value="true" />
@@ -87,7 +87,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714747669789</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="finally">
+      <option name="closed" value="true" />
+      <created>1715784416115</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715784416115</updated>
+    </task>
+    <task id="LOCAL-00007" summary="finally">
+      <option name="closed" value="true" />
+      <created>1715784566495</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715784566495</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,6 +113,7 @@
     <MESSAGE value="продолжение начала" />
     <MESSAGE value="вцыа" />
     <MESSAGE value="eqw" />
-    <option name="LAST_COMMIT_MESSAGE" value="eqw" />
+    <MESSAGE value="finally" />
+    <option name="LAST_COMMIT_MESSAGE" value="finally" />
   </component>
 </project>

@@ -17,7 +17,8 @@ Vue.component('task-form', {
         return {
             taskName: '',
             description: '',
-            deadline: ''
+            deadline: '',
+            title: ''
         };
     },
     methods: {
@@ -29,7 +30,7 @@ Vue.component('task-form', {
                     deadline: this.deadline,
                     reason: ''
                 };
-                newTask.createdDate = new Date().toLocaleDateString();
+                newTask.createdDate = new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate();
                 this.$emit('add', newTask);
                 this.taskName = '';
                 this.description = '';
@@ -47,6 +48,8 @@ Vue.component('task', {
         return {
             editingDescription: false,
             editedDescription: '',
+            editingTitle: false,
+            editedTitle: '',
             returnReason: ''
         };
     },
@@ -54,9 +57,16 @@ Vue.component('task', {
         handleEditDescription() {
             if (this.editingDescription) {
                 this.task.description = this.editedDescription;
-                this.task.lastEdited = new Date().toLocaleString();
+                this.task.lastEdited = new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate();
             }
             this.editingDescription = !this.editingDescription;
+        },
+        handleEditTitle() {
+            if (this.editingTitle) {
+                this.task.title = this.editedTitle;
+                this.task.lastEdited = new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate();
+            }
+            this.editingTitle = !this.editingTitle;
         },
         handleDeleteTask() {
             this.$emit('delete', this.task);
@@ -91,10 +101,12 @@ Vue.component('task', {
         <h3>{{ task.title }}</h3>
         <p v-if="!editingDescription">{{ task.description }}</p>
         <textarea v-model="editedDescription" v-if="editingDescription"></textarea>
+        <textarea v-model="editedTitle" v-if="editingTitle"></textarea>
         <span v-if="task.lastEdited">Отредактировано: {{ task.lastEdited }}</span><br><br>
         <span>Срок сдачи: {{ task.deadline }}</span><br><br>
         <button v-if="type === 'plan'" @click="handleDeleteTask">Удалить</button>
-        <button v-if="type !== 'completed'" @click="handleEditDescription">{{ editingDescription ? 'Сохранить' : 'Редактировать' }}</button>
+        <button v-if="type !== 'completed'" @click="handleEditDescription">{{ editingDescription ? 'Сохранить' : 'Редактировать описание' }}</button>
+        <button v-if="type !== 'completed'" @click="handleEditTitle">{{ editingTitle ? 'Сохранить' : 'Редактировать название' }}</button>
         <button v-if="type === 'plan'" @click="handleMoveTask">Переместить</button>
         <button v-if="type === 'work'" @click="handleMoveToNext">Переместить</button>
         <button v-if="type === 'testing'" @click="handleReturnToPrevious">Вернуть</button>
@@ -197,7 +209,8 @@ Vue.component('app', {
             } else if (indexTesting !== -1) {
                 this.testingTask.splice(indexTesting, 1);
                 this.completedTask.push(task);
-                if (task.deadline >= task.createdDate) {
+                const currentDate = new Date().toISOString().slice(0, 10);
+                if (task.deadline >= currentDate) {
                     task.check = 'Выполнено в срок';
                 } else {
                     task.check = 'Просрочено';
@@ -208,14 +221,14 @@ Vue.component('app', {
         moveToNext(task) {
             const indexWork = this.workTask.indexOf(task);
             const indexTesting = this.testingTask.indexOf(task);
-
             if (indexWork !== -1) {
                 this.workTask.splice(indexWork, 1);
                 this.testingTask.push(task);
             } else if (indexTesting !== -1) {
                 this.testingTask.splice(indexTesting, 1);
                 this.completedTask.push(task);
-                if (task.deadline >= task.createdDate) {
+                const currentDate = new Date().toISOString().slice(0, 10);
+                if (task.deadline >= currentDate) {
                     task.check = 'Выполнено в срок';
                 } else {
                     task.check = 'Просрочено';
@@ -231,7 +244,8 @@ Vue.component('app', {
         completeTask(task) {
             this.testingTask.splice(this.testingTask.indexOf(task), 1);
             this.completedTask.push(task);
-            if (task.deadline >= task.createdDate) {
+            const currentDate = new Date().toISOString().slice(0, 10);
+            if (task.deadline >= currentDate) {
                 task.check = 'Выполнено в срок';
             } else {
                 task.check = 'Просрочено';
